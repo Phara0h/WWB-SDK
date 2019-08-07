@@ -1,0 +1,35 @@
+{
+  "name": "wwb-sdk",
+  "version": "0.1.0",
+  "description": "Wasps with bazookas node sdk module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phara0h/WWB-SDK.git"
+  },
+  "keywords": [
+    "wasps",
+    "with",
+    "bazookas",
+    "loadtest",
+    "wrk",
+    "aws",
+    "ec2"
+  ],
+  "author": "Jt Whissel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Phara0h/WWB-SDK/issues"
+  },
+  "homepage": "https://github.com/Phara0h/WWB-SDK#readme",
+  "dependencies": {
+    "aws-sdk": "^2.504.0",
+    "fasquest": "^1.0.0"
+  },
+  "devDependencies": {
+    "waspswithbazookas": "^1.2.5"
+  }
+}

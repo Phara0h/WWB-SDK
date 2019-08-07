@@ -1,0 +1,22 @@
+{
+  "instance":
+  {
+    "type": "local",
+    "hive":
+    {
+      "ip": "127.0.0.1",
+      "port": "4269",
+    },
+    "wasps": []
+  },
+  "settings":
+  {
+    "aws": {
+      "ami": {
+        "wasp": "ami-011939fefc51137e9",
+        "hive": "ami-0b20c6ff3c67d3b07"
+      },
+      "securityGroupIds" : []
+    }
+  }
+}
