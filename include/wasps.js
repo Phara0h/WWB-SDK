@@ -1,6 +1,6 @@
 const fasq = require('fasquest');
 
-class Hive {
+class Wasps {
   constructor(config) {
 
     this.config = config;
@@ -10,93 +10,71 @@ class Hive {
     return this.config.getHivePath();
   }
 
-     async HiveStatusDone() {
+     async WaspList() {
         var options = {
             method: 'GET',
             resolveWithFullResponse: true,
             simple: false,
-            uri: this.hostUrl + `hive/status/done`,
+            uri: this.hostUrl + `wasp/list`,
             json: true,
         };
         return await fasq.request(options)
     }
 
-     async HiveStatusReportField(field) {
+     async WaspBoopSnoots() {
         var options = {
             method: 'GET',
             resolveWithFullResponse: true,
             simple: false,
-            uri: this.hostUrl + `hive/status/report/${field}`,
+            uri: this.hostUrl + `wasp/boop/snoots`,
+        };
+        return await fasq.request(options)
+    }
+
+     async WaspHeartbeatPort(port) {
+        var options = {
+            method: 'GET',
+            resolveWithFullResponse: true,
+            simple: false,
+            uri: this.hostUrl + `wasp/heartbeat/${port}`,
             json: true,
         };
         return await fasq.request(options)
     }
 
-     async HiveStatusReport() {
+     async WaspCheckinPort(port) {
         var options = {
             method: 'GET',
             resolveWithFullResponse: true,
             simple: false,
-            uri: this.hostUrl + `hive/status/report`,
+            uri: this.hostUrl + `wasp/checkin/${port}`,
             json: true,
         };
         return await fasq.request(options)
     }
 
-     async HiveStatus() {
-        var options = {
-            method: 'GET',
-            resolveWithFullResponse: true,
-            simple: false,
-            uri: this.hostUrl + `hive/status`,
-            json: true,
-        };
-        console.log(options)
-        return await fasq.request(options)
-    }
-
-     async HiveSpawnLocalAmount(amount) {
-        var options = {
-            method: 'GET',
-            resolveWithFullResponse: true,
-            simple: false,
-            uri: this.hostUrl + `hive/spawn/local/${amount}`,
-        };
-        return await fasq.request(options)
-    }
-
-     async HiveTorchLocal() {
-        var options = {
-            method: 'DELETE',
-            resolveWithFullResponse: true,
-            simple: false,
-            uri: this.hostUrl + `hive/torch`,
-            json: true,
-        };
-        return await fasq.request(options)
-    }
-
-     async HiveTorch() {
-        var options = {
-            method: 'DELETE',
-            resolveWithFullResponse: true,
-            simple: false,
-            uri: this.hostUrl + `hive/torch`,
-        };
-        return await fasq.request(options)
-    }
-
-     async HivePoke(body) {
+     async WaspReportinIdFailed(body, id) {
         var options = {
             method: 'PUT',
             resolveWithFullResponse: true,
             simple: false,
-            uri: this.hostUrl + `hive/poke`,
+            uri: this.hostUrl + `wasp/reportin/${id}/failed`,
+            body,
+            json: true,
+        };
+        return await fasq.request(options)
+    }
+
+     async WaspReportinId(body, id) {
+        var options = {
+            method: 'PUT',
+            resolveWithFullResponse: true,
+            simple: false,
+            uri: this.hostUrl + `wasp/reportin/${id}`,
             body,
             json: true,
         };
         return await fasq.request(options)
     }
 }
-
-module.exports = Hive;
+module.exports = Wasps;
