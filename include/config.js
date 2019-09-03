@@ -17,11 +17,17 @@ class Config
       this.log('No config generating default one');
 
       this.path = require('path').dirname(require.main.filename);
-      this.config = require(pwd + '/../config/default.json');
+      console.log(this.path + '/../config/default.json')
+      this.config = require(this.path + '/../config/default.json');
       this.path += '/../config/config.json';
 
       this.saveConfig();
     }
+
+    if(config.digitalOceanAPIKey) {
+      this.setDOAPIKey(config.digitalOceanAPIKey);
+    }
+
   }
 
   setInstance(type, hive, wasps)
@@ -133,6 +139,44 @@ class Config
     try
     {
       return this.config.settings.aws.securityGroupIds;
+    }
+    catch (e)
+    {
+      return null;
+    }
+  }
+
+  setDOAPIKey(key)
+  {
+    try
+    {
+      this.config.settings.digitalOcean.apiKey = key;
+      this.saveConfig();
+      return this.config.settings.digitalOcean.apiKey;
+    }
+    catch (e)
+    {
+      return null;
+    }
+  }
+
+  getDOAPIKey()
+  {
+    try
+    {
+      return this.config.settings.digitalOcean.apiKey;
+    }
+    catch (e)
+    {
+      return null;
+    }
+  }
+
+  getDOImages()
+  {
+    try
+    {
+      return this.config.settings.digitalOcean.images;
     }
     catch (e)
     {

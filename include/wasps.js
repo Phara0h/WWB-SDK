@@ -9,7 +9,20 @@ class Wasps {
   get hostUrl() {
     return this.config.getHivePath();
   }
+    WaitForWasps(amount) {
+      return new Promise((resolve,reject)=>{
+        var int = setInterval(async ()=>{
+          try {
+            var res = await this.WaspList();
 
+            if(Array.isArray(res.body) && res.body.length >= amount) {
+              resolve(true);
+              clearInterval(int);
+            }
+          } catch (e) {}
+       },500)
+      })
+    }
      async WaspList() {
         var options = {
             method: 'GET',

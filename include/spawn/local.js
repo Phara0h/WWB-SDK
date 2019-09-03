@@ -1,5 +1,3 @@
-
-
 class Local {
     constructor(config) {
        this.config = config;

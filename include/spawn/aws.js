@@ -9,6 +9,10 @@ class Aws
     process.env.AWS_SDK_LOAD_CONFIG = 1;
   }
 
+  setInstanceToAws() {
+    this.config.setInstance('aws',{},[])
+  }
+
   async startHiveInstance()
   {
     if (this.config.getType() == 'aws')
@@ -94,7 +98,7 @@ class Aws
       hive.instanceId = instanceIds[0];
       this.config.setHive(hive);
 
-      this.updateHiveIp();
+      await this.updateHiveIp();
 
       this.config.log('Hive Created and Running');
     }

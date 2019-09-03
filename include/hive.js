@@ -10,6 +10,19 @@ class Hive {
     return this.config.getHivePath();
   }
 
+     WaitForComplete() {
+       return new Promise((resolve,reject)=>{
+         var int = setInterval(async ()=>{
+           try {
+             var res = await this.HiveStatusDone();
+             if(res.statusCode == 200) {
+               resolve(true);
+               clearInterval(int);
+             }
+           } catch (e) {}
+        },500)
+       })
+     }
      async HiveStatusDone() {
         var options = {
             method: 'GET',
@@ -18,7 +31,7 @@ class Hive {
             uri: this.hostUrl + `hive/status/done`,
             json: true,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HiveStatusReportField(field) {
@@ -29,7 +42,7 @@ class Hive {
             uri: this.hostUrl + `hive/status/report/${field}`,
             json: true,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HiveStatusReport() {
@@ -40,7 +53,7 @@ class Hive {
             uri: this.hostUrl + `hive/status/report`,
             json: true,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HiveStatus() {
@@ -51,8 +64,8 @@ class Hive {
             uri: this.hostUrl + `hive/status`,
             json: true,
         };
-        console.log(options)
-        return await fasq.request(options)
+
+        return fasq.request(options)
     }
 
      async HiveSpawnLocalAmount(amount) {
@@ -62,7 +75,7 @@ class Hive {
             simple: false,
             uri: this.hostUrl + `hive/spawn/local/${amount}`,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HiveTorchLocal() {
@@ -73,7 +86,7 @@ class Hive {
             uri: this.hostUrl + `hive/torch`,
             json: true,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HiveTorch() {
@@ -83,7 +96,7 @@ class Hive {
             simple: false,
             uri: this.hostUrl + `hive/torch`,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 
      async HivePoke(body) {
@@ -95,7 +108,7 @@ class Hive {
             body,
             json: true,
         };
-        return await fasq.request(options)
+        return fasq.request(options)
     }
 }
 
